@@ -1,39 +1,18 @@
-def fibonacci_generator():
-    a, b = 0, 1
-    while True:
-        yield a
-        a, b = b, a + b
+def concat_strings(*args):
+    """
+    Łączy przekazane argumenty typu string w jeden ciąg znaków, rozdzielając spacją.
 
-def read_large_file(file_path):
-    with open(file_path, 'r') as file:
-        for line in file:
-            yield line.rstrip()
+    Args:
+        *args: Nieokreślona liczba argumentów typu string.
 
-# Przykład użycia generatora ciągu liczb Fibonacciego
-fib_gen = fibonacci_generator()
-for _ in range(10):
-    print(next(fib_gen))
-
-# Przykład użycia generatora czytającego duży plik tekstowy linia po linii
-file_path = 'duzy_plik.txt'  # Ścieżka do dużego pliku tekstowego
-lines_gen = read_large_file(file_path)
-for line in lines_gen:
-    print(line)
+    Returns:
+        str: Połączony ciąg znaków.
+    """
+    return ' '.join(args)
 
 
-    def read_large_file(file_path):
-        try:
-            with open(file_path, 'r') as file:
-                for line in file:
-                    yield line.rstrip()
-        except FileNotFoundError:
-            print("Plik nie został znaleziony.")
-        except Exception as e:
-            print("Wystąpił błąd podczas czytania pliku:", str(e))
-
-
-    # Przykład użycia
-    file_path = 'file.txt'  # Ścieżka do dużego pliku tekstowego
-    lines_gen = read_large_file(file_path)
-    for line in lines_gen:
-        print(line)
+# Testowanie funkcji na kilku zestawach stringów
+print(concat_strings("Hello", "world"))  # Wydrukuje: Hello world
+print(concat_strings("The", "quick", "brown", "fox"))  # Wydrukuje: The quick brown fox
+print(concat_strings("Python", "is", "awesome"))  # Wydrukuje: Python is awesome
+print(concat_strings("This", "is", "a", "test"))

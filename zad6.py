@@ -1,12 +1,18 @@
-words = ["apple", "banana", "avocado", "kiwi", "orange", "apricot"]
+def safe_function(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            print(f"Wystąpił błąd: {e}")
+            return None
+    return wrapper
 
-# Wykorzystanie funkcji filter() do wyodrębnienia słów zaczynających się na literę "a"
-words_starting_with_a = list(filter(lambda word: word.startswith("a"), words))
+@safe_function
+def divide(a, b):
+    return a / b
 
-# Wykorzystanie funkcji map() do przekształcenia listy liczb w listę ich kwadratów
-numbers = [1, 2, 3, 4, 5]
-squared_numbers = list(map(lambda x: x**2, numbers))
+result1 = divide(10, 2)
+print("Wynik dzielenia:", result1)
 
-# Wyświetlenie wyników
-print("Words starting with 'a':", words_starting_with_a)
-print("Squared numbers:", squared_numbers)
+result2 = divide(10, 0) 
+print("Wynik dzielenia:", result2)

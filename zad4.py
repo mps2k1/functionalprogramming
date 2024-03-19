@@ -1,16 +1,6 @@
+numbers = [3, 6, 9, 12, 15]
 
-def add(a, b):
-    return a + b
+# List comprehension z wyrażeniem walrus operator
+squares_greater_than_10 = [square for num in numbers if (square := num ** 2) > 10]
 
-def subtract(a, b):
-    return a - b
-
-def calculate(operation, x, y):
-    return operation(x, y)
-
-# Przekazanie funkcji jako argumentu
-result_addition = calculate(add, 5, 3)
-print("Addition:", result_addition)
-
-result_subtraction = calculate(subtract, 10, 7)
-print("Subtraction:", result_subtraction)
+print(squares_greater_than_10)
